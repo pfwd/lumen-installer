@@ -1,0 +1,7 @@
+#!/bin/bash
+
+export $(egrep -v '^#' .env | xargs)
+echo "Creating Lumen Project ${PROJECT_NAME}"
+docker-compose up -d --build
+docker-compose exec site composer create-project --prefer-dist laravel/lumen ${PROJECT_NAME}
+docker-compose exec site chmod -R 777 ${PROJECT_NAME}/storage/logs ${PROJECT_NAME}/storage/framework

@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  site:
+    volumes:
+      - .:/var/www/html
+    environment:
+      - PROJECT_NAME=foobar
+    ports:
+      - 80:80
+    build:
+      context: .
+      args:
+        PROJECT_NAME: ${PROJECT_NAME}
